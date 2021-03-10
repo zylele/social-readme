@@ -8,7 +8,7 @@ Automatically build Social feeds in your Profile Readme everyday, preview: <a hr
 
 ## 目前支持
 
-- Atom标准文档格式，比如 [我的博客](https://zylele.github.io/) atom链接是https://zylele.github.io/atom.xml
+- rss，符合rss2.0或atom标准，比如 [我的博客](https://zylele.github.io/) rss链接是https://zylele.github.io/atom.xml
 - 豆瓣（想看、在看和看过的书和电影，想听、在听和听过的音乐）
 
 ## 更新你的项目readme
