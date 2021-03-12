@@ -4,7 +4,7 @@ Automatically build Social feeds in your Profile Readme everyday, preview: <a hr
 
 每天自动构建社交feed到你的主页readme中，预览：<a href="https://github.com/zylele" target="_blank">github.com/zylele</a>
 
-![image](https://user-images.githubusercontent.com/12383106/110250943-18ff6480-7fb9-11eb-8f27-daa027a3c3f1.png)
+![image](https://user-images.githubusercontent.com/12383106/110927573-c6c79600-8360-11eb-9af6-1d3399bc2b80.png)
 
 ## 目前支持
 
