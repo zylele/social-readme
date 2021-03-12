@@ -31,7 +31,9 @@ Automatically build Social feeds in your Profile Readme everyday, preview: <a hr
 
 ## Profile Repository(`<username>/<username>`)
 
-Profile Repository是一个彩蛋，是一个特殊仓库，仓库名需要与你的GitHub用户名相同，比如我的Profile Repository：[github.com/zylele/zylele](https://github.com/zylele/zylele)
+Profile Repository是GitHub的一个彩蛋，是一个特殊仓库
+仓库名需要与你的GitHub用户名相同，其中根目录的readme将会展示在你的公共主页上
+比如我的Profile Repository：[github.com/zylele/zylele](https://github.com/zylele/zylele)
 
 _如果你在Profile Repository上构建workflow_
 > 那你就不需要GitHub Access Token，因为GitHub Action已经为你生成了一个
