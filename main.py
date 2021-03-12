@@ -6,7 +6,7 @@ from github import Github, GithubException
 import social
 
 REPOSITORY = os.getenv('INPUT_REPOSITORY')
-GHTOKEN = os.getenv('INPUT_GH_TOKEN')
+GH_TOKEN = os.getenv('INPUT_GH_TOKEN')
 
 COMMIT_MESSAGE = os.getenv("INPUT_COMMIT_MESSAGE")
 
@@ -24,7 +24,7 @@ def decode_readme(data: str) -> str:
 
 
 if __name__ == "__main__":
-    g = Github(GHTOKEN)
+    g = Github(GH_TOKEN)
     try:
         repo = g.get_repo(REPOSITORY)
     except GithubException:

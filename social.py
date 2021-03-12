@@ -37,10 +37,13 @@ def generate_douban(username, limit, readme) -> str:
         {
             "title": item["title"],
             "url": item["link"].split("#")[0],
-            "published": format_time(item["published"])
+            "published": format_time(item["published"]),
+            "description": item["description"]
         }
         for item in entries[:limit]
     ]
+    for item in entries[:limit]:
+        print(item["published"])
 
     content = "\n".join(
         ["* <a href='{url}' target='_blank'>{title}</a> - {published}".format(**item) for item in arr]
