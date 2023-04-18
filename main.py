@@ -50,12 +50,12 @@ if __name__ == "__main__":
     old_readme = decode_readme(contents.content)
     new_readme = old_readme
 
-    if BLOG_RSS_LINK is not None and BLOG_LIMIT > 0:
+    if BLOG_RSS_LINK is not None and len(BLOG_RSS_LINK.strip()) > 0 and BLOG_LIMIT > 0:
         print("BLOG_RSS_LINK:" + BLOG_RSS_LINK)
         print("BLOG_LIMIT:" + str(BLOG_LIMIT))
         new_readme = social.generate_blog(BLOG_RSS_LINK, BLOG_LIMIT, new_readme)
 
-    if DOUBAN_NAME is not None and DOUBAN_LIMIT > 0:
+    if DOUBAN_NAME is not None and len(DOUBAN_NAME.strip()) > 0 and DOUBAN_LIMIT > 0:
         print("DOUBAN_NAME:" + DOUBAN_NAME)
         print("DOUBAN_LIMIT:" + str(DOUBAN_LIMIT))
         new_readme = social.generate_douban(DOUBAN_NAME, DOUBAN_LIMIT, new_readme)
