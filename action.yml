@@ -14,8 +14,12 @@ inputs:
     required: false
 
   commit_message:
-    description:  "COMMIT_MESSAGE"
+    description:  "commit message"
     default: "Updated social rss by social-readme"
+    required: false
+
+  file_path:
+    description: "file path"
     required: false
 
   blog_rss_link:

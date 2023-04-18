@@ -10,6 +10,8 @@ GH_TOKEN = os.getenv('INPUT_GH_TOKEN')
 
 COMMIT_MESSAGE = os.getenv("INPUT_COMMIT_MESSAGE")
 
+FILE_PATH = os.getenv("INPUT_FILE_PATH")
+
 BLOG_RSS_LINK = os.getenv('INPUT_BLOG_RSS_LINK')
 BLOG_LIMIT = int(os.getenv('INPUT_BLOG_LIMIT'))
 
@@ -27,12 +29,23 @@ if __name__ == "__main__":
     g = Github(GH_TOKEN)
     try:
         repo = g.get_repo(REPOSITORY)
-    except GithubException:
+    except GithubException as e:
         print(
             "Authentication Error. Try saving a GitHub Token in your Repo Secrets or Use the GitHub Actions Token, "
             "which is automatically used by the action.")
+        print(e)
         sys.exit(1)
-    contents = repo.get_readme()
+
+    try:
+        if FILE_PATH is not None:
+            print("FILE_PATH:" + FILE_PATH)
+            contents = repo.get_contents(FILE_PATH)
+        else:
+            contents = repo.get_readme()
+    except GithubException as e:
+        print("Get file Error. Please check the file path")
+        print(e)
+        sys.exit(1)
 
     old_readme = decode_readme(contents.content)
     new_readme = old_readme
