@@ -35,14 +35,11 @@ Automatically build Social feeds in your Profile Readme everyday, preview: <a hr
 
 这是GitHub的一个彩蛋，仓库根目录的README.md文件将会被渲染展示在你的个人公共主页上
 
-比如我的Profile Repository是 [github.com/zylele/zylele](https://github.com/zylele/zylele) ，README.md将会展示在我的主页上：[zylele(Ale)](https://github.com/zylele)
-
-_如果你在Profile Repository上构建workflow_
-> 那你就不需要GitHub Access Token，因为GitHub Action已经为你生成了一个
-
 - 在你项目的根目录，新建`.github/workflows/social-readme.yml`，或者编辑其他已有的workflow文件
 
-- 拷贝以下代码到上一步的文件中，根据你的需要，选填博客atom链接`blog_rss_link`，豆瓣用户名`douban_name`（豆瓣个人主页地址可以看到douban.com/people/username/）
+- 拷贝以下代码到上一步的文件中，根据你的需要，选填博客atom链接`blog_rss_link`，豆瓣用户名`douban_name`（豆瓣个人主页地址可以看到douban.com/people/username/，这里的username）
+
+比如我的Profile Repository是 [github.com/zylele/zylele](https://github.com/zylele/zylele) ，README.md将会展示在我的主页上：[zylele(Eric)](https://github.com/zylele)，可以参考如下配置：
 
 ```yml
 name: Social Readme
@@ -61,17 +58,14 @@ jobs:
     steps:
       - uses: zylele/social-readme@master
         with:
-          blog_rss_link: your blog rss link
-          douban_name: your douban username
+          blog_rss_link: https://zylele.github.io/atom.xml
+          douban_name: znyalor
 ```
 
-## 其他仓库（not `<username>/<username>`）
+## 其他仓库或其他路径文件
 
-_如果你在其他仓库构建workflow_
-
-那你需要先获取[GitHub Access Token](https://docs.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token) 并且保存在Repo Secrets `GH_TOKEN = <Your GitHub Access Token>`
-
-下面是运行它的示例workflow文件：
+同样的，在仓库的工作流文件中增加workflow配置。
+如果是更新非readme文件，则需要配置`file_path`参数来指定文件路径，如我的博客的源码仓库，其中 [关于我](https://zylele.github.io/about/) 页面对应的仓库文件是`source/about/index.md`，配置如下：
 
 ```yml
 name: Social Readme
@@ -90,23 +84,21 @@ jobs:
     steps:
       - uses: zylele/social-readme@master
         with:
-          blog_rss_link: your blog rss link
-          douban_name: your douban username
-          gh_token: ${{ secrets.GH_TOKEN }}
-          repository: <username/reponame> #可选，默认将会自动使用执行workflow的存储库
+          douban_name: znyalor
+          file_path: source/about/index.md
 ```
 
-## 可选配置
+## 完整的可选配置
 
 如果你想定制更多构建细节，在workflow文件中的`with`有如下可选参数
 
 ```yml
 - uses: zylele/social-readme@master
   with:
-    blog_rss_link: your blog rss link
+    blog_rss_link: # 博客链接
     blog_limit: 5 # blog数量
-    douban_name: your douban username
+    douban_name: # 豆瓣用户名
     douban_limit: 5 # 豆瓣最新动态数量
     commit_message: Updated social rss by social-readme # commit说明
+    file_path: # 更新非readme文件，填写仓库中的文件路径，如source/about/index.md
 ```
-
