@@ -37,7 +37,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     try:
-        if FILE_PATH is not None:
+        if FILE_PATH is not None and len(FILE_PATH.strip()) > 0:
             print("FILE_PATH:" + FILE_PATH)
             contents = repo.get_contents(FILE_PATH)
         else:
