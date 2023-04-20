@@ -2,9 +2,13 @@
 
 Automatically build Social feeds in your Profile Readme everyday, preview: <a href="https://github.com/zylele" target="_blank">github.com/zylele</a>
 
-每天自动构建社交feed到你的主页readme中，预览：<a href="https://github.com/zylele" target="_blank">github.com/zylele</a>
+自动构建社交feed到你的主页readme中，预览：<a href="https://github.com/zylele" target="_blank">github.com/zylele</a>
 
-![image](https://user-images.githubusercontent.com/12383106/110927573-c6c79600-8360-11eb-9af6-1d3399bc2b80.png)
+![image](https://user-images.githubusercontent.com/12383106/233308515-09e00a2a-9277-44a7-ba7b-1e975c50a326.png)
+
+或者我的博客，“关于我”页面，预览：<a href="https://zylele.github.io" target="_blank">「关于」 | 乐章</a>
+
+![image](https://user-images.githubusercontent.com/12383106/233309981-20be571c-92d6-4ff5-b9b1-a7df9049a3ad.png)
 
 ## 目前支持
 
