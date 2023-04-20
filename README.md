@@ -6,7 +6,7 @@ Automatically build Social feeds in your Profile Readme everyday, preview: <a hr
 
 ![image](https://user-images.githubusercontent.com/12383106/233308515-09e00a2a-9277-44a7-ba7b-1e975c50a326.png)
 
-或者我的博客，“关于我”页面，预览：<a href="https://zylele.github.io" target="_blank">「关于」 | 乐章</a>
+或者我的博客，“关于我”页面，预览：<a href="https://zylele.github.io/about/" target="_blank">「关于」 | 乐章</a>
 
 ![image](https://user-images.githubusercontent.com/12383106/233309981-20be571c-92d6-4ff5-b9b1-a7df9049a3ad.png)
 
