@@ -106,3 +106,7 @@ jobs:
     commit_message: Updated social rss by social-readme # commit说明
     file_path: # 更新非readme文件，填写仓库中的文件路径，如source/about/index.md
 ```
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=zylele/social-readme&type=Date)](https://star-history.com/#zylele/social-readme&Date)
