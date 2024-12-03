@@ -15,7 +15,17 @@ Automatically build Social feeds in your Profile Readme everyday, preview: <a hr
 - rss，符合rss2.0或atom标准，比如 [我的博客](https://zylele.github.io/) rss链接是https://zylele.github.io/atom.xml
 - 豆瓣（想看、在看和看过的书和电影，想听、在听和听过的音乐）
 
-## 更新你的项目readme
+## GitHub主页构建使用方式
+
+### 1.确认存在Profile Repository(`<username>/<username>`)项目
+
+> 仓库名与你的GitHub用户名相同的，就是Profile Repository
+> 
+> 这是GitHub的一个彩蛋，仓库根目录的README.md文件将会被渲染展示在你的个人公共主页上
+> 
+> 比如我的Profile Repository是 [github.com/zylele/zylele](https://github.com/zylele/zylele) ，README.md将会展示在我的主页上：[zylele(Eric)](https://github.com/zylele)
+
+### 2.修改根目录文件
 
 根据你的需要，在你的readme中增加以下内容
 
@@ -33,17 +43,13 @@ Automatically build Social feeds in your Profile Readme everyday, preview: <a hr
 
 这些是构建feed信息的识别点
 
-## Profile Repository(`<username>/<username>`)
+### 2.配置workflow文件
 
-仓库名与你的GitHub用户名相同的，就是Profile Repository
+- 在你项目仓库的根目录，新建`.github/workflows/social-readme.yml`，或者编辑其他已有的workflow文件
 
-这是GitHub的一个彩蛋，仓库根目录的README.md文件将会被渲染展示在你的个人公共主页上
+- 拷贝以下代码到上一步的文件中，根据你的需要，选填博客atom链接`blog_rss_link`，豆瓣用户名`douban_name`（进入豆瓣个人主页，douban.com/people/username/，这里地址中的username就是用户名）
 
-- 在你项目的根目录，新建`.github/workflows/social-readme.yml`，或者编辑其他已有的workflow文件
-
-- 拷贝以下代码到上一步的文件中，根据你的需要，选填博客atom链接`blog_rss_link`，豆瓣用户名`douban_name`（豆瓣个人主页地址可以看到douban.com/people/username/，这里的username）
-
-比如我的Profile Repository是 [github.com/zylele/zylele](https://github.com/zylele/zylele) ，README.md将会展示在我的主页上：[zylele(Eric)](https://github.com/zylele)，可以参考如下配置：
+我的GitHub主页参考配置如下：
 
 ```yml
 name: Social Readme
@@ -66,10 +72,21 @@ jobs:
           douban_name: znyalor
 ```
 
-## 其他仓库或其他路径文件
+## 非根目录readme文件构建使用方式
+
+如我的博客的源码仓库，其中 [关于我](https://zylele.github.io/about/) 页面对应的仓库文件是`source/about/index.md`
+
+### 1.修改目标文件
+
+同样的，在目标文件中插入上述的“识别点”
+
+### 2.配置workflow文件
 
 同样的，在仓库的工作流文件中增加workflow配置。
-如果是更新非readme文件，则需要配置`file_path`参数来指定文件路径，如我的博客的源码仓库，其中 [关于我](https://zylele.github.io/about/) 页面对应的仓库文件是`source/about/index.md`，配置如下：
+
+因为是更新非根目录的readme文件，则需要配置`file_path`参数来指定文件路径
+
+这里我的配置如下：
 
 ```yml
 name: Social Readme
@@ -92,7 +109,7 @@ jobs:
           file_path: source/about/index.md
 ```
 
-## 完整的可选配置
+## 完整配置说明
 
 如果你想定制更多构建细节，在workflow文件中的`with`有如下可选参数
 
