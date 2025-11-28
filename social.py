@@ -41,14 +41,7 @@ def generate_blog(rss_link, limit, readme) -> str:
 def generate_douban(username, limit, readme) -> str:
     """Generate douban"""
     try:
-        feed_data = feedparser.parse("https://www.douban.com/feed/people/" + username + "/interests")["entries"]
-        # 检查是否获取到条目数据
-        if not feed_data.get("entries"):
-            print("❌ 未获取到豆瓣数据，跳过更新")
-            # 直接返回原内容，不做任何更新
-            return readme
-
-        entries = feed_data["entries"]
+        entries = feedparser.parse("https://www.douban.com/feed/people/" + username + "/interests")["entries"]
         print(f"获取到的豆瓣feed数据: {entries}")
 
         arr = [
@@ -64,7 +57,7 @@ def generate_douban(username, limit, readme) -> str:
         print(f"获取到的豆瓣feed数据: {arr}")
         # 检查 arr 是否为空
         if not arr:
-            print("❌ 处理后的数据 arr 为空数组，跳过更新")
+            print("❌ 未获取到豆瓣数据，跳过更新")
             return readme
 
         content = "\n".join(
