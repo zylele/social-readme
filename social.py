@@ -20,30 +20,38 @@ DOUBAN_RATING = {
 
 def generate_blog(rss_link, limit, readme) -> str:
     """Generate blog"""
-    entries = feedparser.parse(rss_link)["entries"]
-    arr = [
-        {
-            # "title": (entry["title"][0:20] + "...") if(len(entry["title"]) > 22) else entry["title"],
-            "title": entry["title"],
-            "url": entry["link"].split("#")[0],
-            "published": entry["published"].split("T")[0],
-        }
-        for entry in entries[:limit]
-    ]
+    try:
+        entries = feedparser.parse(rss_link)["entries"]
+        arr = [
+            {
+                # "title": (entry["title"][0:20] + "...") if(len(entry["title"]) > 22) else entry["title"],
+                "title": entry["title"],
+                "url": entry["link"].split("#")[0],
+                "published": entry["published"].split("T")[0],
+            }
+            for entry in entries[:limit]
+        ]
 
-    content = "\n".join(
-        ["* <a href='{url}' target='_blank'>{title}</a> - {published}".format(**item) for item in arr]
-    )
+        print(f"获取到的rss feed数据: {arr}")
+        # 检查 arr 是否为空
+        if not arr:
+            print("❌ 未获取到rss数据，跳过更新")
+            return readme
 
-    return generate_new_readme(BLOG_START_COMMENT, BLOG_END_COMMENT, content, readme)
+        content = "\n".join(
+            ["* <a href='{url}' target='_blank'>{title}</a> - {published}".format(**item) for item in arr]
+        )
 
+        return generate_new_readme(BLOG_START_COMMENT, BLOG_END_COMMENT, content, readme)
+    except Exception as e:
+        print(f"处理rss数据时出错: {e}")
+        # 出错时返回原内容
+        return readme
 
 def generate_douban(username, limit, readme) -> str:
     """Generate douban"""
     try:
         entries = feedparser.parse("https://www.douban.com/feed/people/" + username + "/interests")["entries"]
-        print(f"获取到的豆瓣feed数据: {entries}")
-
         arr = [
             {
                 "title": item["title"],
