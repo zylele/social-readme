@@ -1,7 +1,8 @@
 import base64
 import os
 import sys
-from github import Github, GithubException
+from github import Github
+from github import Auth
 
 import social
 
@@ -26,10 +27,11 @@ def decode_readme(data: str) -> str:
 
 
 if __name__ == "__main__":
-    g = Github(GH_TOKEN)
+    auth = Auth.Token(GH_TOKEN)
+    g = Github(auth=auth)
     try:
         repo = g.get_repo(REPOSITORY)
-    except GithubException as e:
+    except Exception as e:
         print(
             "Authentication Error. Try saving a GitHub Token in your Repo Secrets or Use the GitHub Actions Token, "
             "which is automatically used by the action.")
@@ -42,7 +44,7 @@ if __name__ == "__main__":
             contents = repo.get_contents(FILE_PATH)
         else:
             contents = repo.get_readme()
-    except GithubException as e:
+    except Exception as e:
         print("Get file Error. Please check the file path")
         print(e)
         sys.exit(1)
