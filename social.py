@@ -40,23 +40,42 @@ def generate_blog(rss_link, limit, readme) -> str:
 
 def generate_douban(username, limit, readme) -> str:
     """Generate douban"""
-    entries = feedparser.parse("https://www.douban.com/feed/people/" + username + "/interests")["entries"]
-    arr = [
-        {
-            "title": item["title"],
-            "url": item["link"].split("#")[0],
-            "published": format_time(item["published"]),
-            "rating_star": generate_rating_star(item["description"])
-        }
-        for item in entries[:limit]
-    ]
+    try:
+        feed_data = feedparser.parse("https://www.douban.com/feed/people/" + username + "/interests")["entries"]
+        # 检查是否获取到条目数据
+        if not feed_data.get("entries"):
+            print("❌ 未获取到豆瓣数据，跳过更新")
+            # 直接返回原内容，不做任何更新
+            return readme
 
-    content = "\n".join(
-        ["* <a href='{url}' target='_blank'>{title}</a> {rating_star}- {published}".format(**item) for item in arr]
-    )
+        entries = feed_data["entries"]
+        print(f"获取到的豆瓣feed数据: {entries}")
 
-    return generate_new_readme(DOUBAN_START_COMMENT, DOUBAN_END_COMMENT, content, readme)
+        arr = [
+            {
+                "title": item["title"],
+                "url": item["link"].split("#")[0],
+                "published": format_time(item["published"]),
+                "rating_star": generate_rating_star(item["description"])
+            }
+            for item in entries[:limit]
+        ]
 
+        print(f"获取到的豆瓣feed数据: {arr}")
+        # 检查 arr 是否为空
+        if not arr:
+            print("❌ 处理后的数据 arr 为空数组，跳过更新")
+            return readme
+
+        content = "\n".join(
+            ["* <a href='{url}' target='_blank'>{title}</a> {rating_star}- {published}".format(**item) for item in arr]
+        )
+
+        return generate_new_readme(DOUBAN_START_COMMENT, DOUBAN_END_COMMENT, content, readme)
+    except Exception as e:
+        print(f"处理豆瓣数据时出错: {e}")
+        # 出错时返回原内容
+        return readme
 
 def generate_new_readme(start_comment: str, end_comment: str, content: str, readme: str) -> str:
     """Generate a new Readme.md"""
